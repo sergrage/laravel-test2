@@ -3,12 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
-class Animal extends Model
+
+class Article extends Model
 {
-
-	protected $fillable = [
-        'name', 'type', 'email'
+    protected $fillable = [
+        'title'
     ];
 
     public function user()

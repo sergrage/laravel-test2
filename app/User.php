@@ -31,6 +31,16 @@ class User extends Authenticatable
 
     public function animal()
     {
-        return $this->hasOne('App\Animal');
+        return $this->hasOne('App\Animal')->withDefault(); // возвращается пустая модель если нет связи
+    }
+
+    public function article()
+    {
+        return $this->hasMany('App\Article');
+    }
+
+    public function roles()
+    {
+        return $this->belongToMany('App\Role');
     }
 }
