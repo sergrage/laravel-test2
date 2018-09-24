@@ -1,5 +1,5 @@
-@extends("layout")
-
+@extends("layouts.layout")
+@include('partials._nav')
 @section('content')
   <div class="title">
       Show User

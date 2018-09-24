@@ -12,3 +12,7 @@
 */
 
 Route::resource('/users', 'IndexController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

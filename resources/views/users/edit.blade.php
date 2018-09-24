@@ -1,5 +1,5 @@
-@extends("layout")
-
+@extends("layouts.layout")
+@include('partials._nav')
 @section('content')
   <div class="title">
       Edit User Profile
@@ -25,18 +25,27 @@
 	    <input type="text" name="animalType" class="form-control col-10" id="inputAnimalType" value="{{ $user->animal->type }}" placeholder="Enter Pet Type">
 	  </div>
 	  <div class="form-group row">
-	    <label class="col-2 col-form-label" for="inputTitle">Article Title</label>
-	    <input type="text" name="animalType" class="form-control col-10" id="inputTitle" value="" placeholder="Article Title">
-	  </div>
-	  <div class="form-group row">
-	    <label class="col-2 col-form-label" for="inputTitle">User Role</label>
-	    <select id="inputTitle" class="form-control col-10" name="role">
+	    <label class="col-2 col-form-label" for="inputRole">User Role</label>
+	    <select id="inputRole" class="form-control col-10" name="role">
         	<option>Admin</option>
+        	<option>Moderator</option>
         	<option selected>User</option>
       </select>
 	  </div>
 
 	  <button type="submit" class="btn btn-primary">Submit</button>
 	</form>
+	<hr>
+	@if ($errors->any())
+	    <div class="alert alert-danger">
+	        <ul>
+	            @foreach ($errors->all() as $error)
+	                <li>{{ $error }}</li>
+	            @endforeach
+	        </ul>
+	    </div>
+	@endif
+
+	<a href="{{route('users.index')}}" class="btn btn-outline-primary">Назад</a>
   </div>
 @endsection
