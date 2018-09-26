@@ -26,9 +26,11 @@
 	  <div class="form-group row">
 	    <label class="col-2 col-form-label" for="inputRole">User Role</label>
 	    <select multiple id="inputRole" class="form-control col-10" name="roles[]">
-        	<option>admin</option>
-        	<option>moderator</option>
-        	<option selected>user</option>
+        	@foreach($roles as $role)
+
+				<option value="{{$role->id}}"> {{ $role->name }} </option>}
+        	}
+        	@endforeach
       </select>
 	  </div>
 

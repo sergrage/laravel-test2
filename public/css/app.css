@@ -10477,3 +10477,25 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.form__body {
+  display: none;
+  background: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  position: relative;
+}
+
+.form__label {
+  font-size: 1.2rem;
+}
+
+.form__close {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  right: 7px;
+  top: 2px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+

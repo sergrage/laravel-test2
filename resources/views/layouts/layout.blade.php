@@ -78,7 +78,8 @@
         </style>
 
         <link rel="stylesheet" type="text/css" href="{{ mix('/css/app.css') }}" }}>
-        <script src="{{ mix('/js/app.js') }}"></script>
+<!--         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+        
     </head>
     <body>
         <div class="">
@@ -89,4 +90,5 @@
             </div>
         </div>
     </body>
+    <script src="{{ mix('/js/app.js') }}"></script>
 </html>

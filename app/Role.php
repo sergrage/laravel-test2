@@ -8,7 +8,10 @@ use App\User;
 
 class Role extends Model
 {
-        protected $fillable = [
+
+	protected $table = 'roles';
+
+    protected $fillable = [
         'name'
     ];
 

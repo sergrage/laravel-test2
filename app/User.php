@@ -34,6 +34,7 @@ class User extends Authenticatable
     public function animal()
     {
         return $this->hasOne('App\Animal')->withDefault(); // возвращается пустая модель если нет связи
+        // $user->animal, а иначе просто null
     }
 
     public function article()

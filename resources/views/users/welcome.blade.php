@@ -9,10 +9,11 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">email</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
       <th scope="col">Animal - One to One</th>
       <th scope="col">Articles - One to Many</th>
+      <th scope="col">Roles - Many to Many</th>
       @if(Auth::check())
       <th scope="col">CRUD</th>
       @endif
@@ -28,12 +29,31 @@
       <td>
         <ul>
             @forelse($person->article as $article)
-              
               <li>  <span> - </span> {{ $article->title }} </li>
             @empty
                 <span class="badge badge-secondary">No articles</span>
             @endforelse
-         </ul>  
+         </ul>
+         <hr>
+         <form class="form form__body" method="POST" action="{{route('artical.create')}}">
+          @csrf
+          <div class="form__close">X</div>
+          <div class="form-group">
+            <label for="articalTitle">Article Title</label>
+            <input type="text" name="title" id="articalTitle" class="form-control">
+            <input type="hidden" name="userId" value="{{$person->id}}">
+            <small id="passwordHelpInline" class="text-muted">
+              Must be 8-255 characters long.
+            </small>
+          </div>
+           <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+        </form>
+         <button class="btn btn-warning btn-sm pt-1 action_form_button">Add Article Title</button>  
+      </td>
+      <td>
+        @foreach($person->roles as $role)
+          <span class="badge badge-primary">{{$role->name}}</span>
+        @endforeach
       </td>
       @if(Auth::check())
       <td>

@@ -12,11 +12,15 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserCreateRequest;
 use App\Http\Requests\UserUpdateRequest;
 
+use Illuminate\Support\Facades\Auth;
+
 class IndexController extends Controller
 {
     public function index()
     {
     	$users = User::all();
+
+        //dd(Auth::user()->animal);
 
     	return view('users.welcome', compact('users'));
     }
@@ -30,19 +34,31 @@ class IndexController extends Controller
 
     public function create()
     {
-        $roles = Role::pluck('name', 'id')->all();
+        $roles = Role::all();
+
+        //dd($roles);
+
         return view('users.create', compact('roles'));
     }
 
     public function store(UserCreateRequest $request)
     {
+    //     dd($request);
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret,
         ]);
-        dd(array_keys($request->input('roles')));
-        $user->roles()->attach(array_keys($request->input('roles')));
+
+        if($request['animalName']) {
+            $animal = Animal::create([
+                'user_id' => $user->id,
+                'name' => $request['animalName'],
+                'type' => $request['animalType'],
+            ]);
+       }
+        
+        $user->roles()->attach($request->input('roles'));
 
         return redirect('/users');
 
@@ -63,6 +79,8 @@ class IndexController extends Controller
 
     public function destroy(User $user)
     {
+        $user->roles()->detach();
+        $user->animal()->delete();
         $user->delete();
         return redirect('/users');
     }

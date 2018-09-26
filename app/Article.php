@@ -9,7 +9,8 @@ use App\User;
 class Article extends Model
 {
     protected $fillable = [
-        'title'
+        'title',
+        'user_id',
     ];
 
     public function user()
